@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Resumes - Smart Hire</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Additional styles specific to upload page */
+        .upload-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .upload-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .upload-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .upload-instructions {
+            background: #F8F9FA;
+            padding: 40px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .instruction-steps {
+            display: grid;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .instruction-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .quick-action-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #F8F9FA;
+        }
+        
+        .quick-action-card:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .file-format-badges {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .format-badge {
+            background: #667eea;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .upload-area-large {
+            border: 3px dashed #667eea;
+            border-radius: 20px;
+            padding: 60px 40px;
+            text-align: center;
+            margin: 40px 0;
+            background: #F8F9FF;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .upload-area-large:hover {
+            background: #EAECFF;
+            border-color: #764ba2;
+        }
+        
+        .upload-area-large i {
+            font-size: 4rem;
+            color: #667eea;
+            margin-bottom: 20px;
+        }
+        
+        .recent-uploads {
+            margin-top: 50px;
+        }
+        
+        .upload-list {
+            display: grid;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .upload-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .upload-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .upload-icon {
+            width: 40px;
+            height: 40px;
+            background: #667eea;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+        
+        .back-to-dashboard {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .back-to-dashboard:hover {
+            color: #764ba2;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="header" style="background: white; padding: 20px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1 style="margin: 0; font-size: 2rem;">Smart Hire</h1>
+                </div>
+                <a href="index.html" class="back-to-dashboard">
+                    <i class="fas fa-arrow-left"></i>
+                    Back to Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="upload-hero">
+        <div class="upload-container">
+            <h1 style="font-size: 3rem; margin-bottom: 20px;">Upload Candidate Resumes</h1>
+            <p style="font-size: 1.3rem; opacity: 0.9; max-width: 600px; margin: 0 auto;">
+                Upload resumes to get AI-powered domain classification and role recommendations
+            </p>
+        </div>
+    </section>
+
+    <div class="upload-container">
+        <!-- Quick Actions -->
+        <div class="quick-actions">
+            <div class="quick-action-card" onclick="showUploadSection('single')">
+                <i class="fas fa-user" style="font-size: 2rem; color: #667eea; margin-bottom: 15px;"></i>
+                <h3>Single Candidate</h3>
+                <p>Analyze one candidate at a time</p>
+            </div>
+            
+            <div class="quick-action-card" onclick="showUploadSection('batch')">
+                <i class="fas fa-users" style="font-size: 2rem; color: #667eea; margin-bottom: 15px;"></i>
+                <h3>Batch Upload</h3>
+                <p>Process multiple candidates</p>
+            </div>
+            
+            <div class="quick-action-card" onclick="showUploadSection('drag-drop')">
+                <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #667eea; margin-bottom: 15px;"></i>
+                <h3>Drag & Drop</h3>
+                <p>Easy file upload</p>
+            </div>
+            
+            <div class="quick-action-card" onclick="showUploadSection('integrations')">
+                <i class="fas fa-plug" style="font-size: 2rem; color: #667eea; margin-bottom: 15px;"></i>
+                <h3>Integrations</h3>
+                <p>Connect with ATS</p>
+            </div>
+        </div>
+
+        <!-- Upload Instructions -->
+        <section class="upload-instructions">
+            <h2 style="text-align: center; margin-bottom: 10px;">How It Works</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 30px;">
+                Follow these simple steps to analyze candidate resumes with AI
+            </p>
+            
+            <div class="instruction-steps">
+                <div class="instruction-step">
+                    <div class="step-number">1</div>
+                    <div>
+                        <h4>Upload Resume</h4>
+                        <p>Upload candidate resumes in PDF, DOCX, or TXT format. Our AI can parse all common resume formats.</p>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">2</div>
+                    <div>
+                        <h4>AI Analysis</h4>
+                        <p>Smart Hire analyzes the resume to identify skills, experience, education, and domain expertise.</p>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">3</div>
+                    <div>
+                        <h4>Domain Classification</h4>
+                        <p>The AI classifies the candidate into one of 22 professional domains with confidence scoring.</p>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">4</div>
+                    <div>
+                        <h4>Role Recommendations</h4>
+                        <p>Get top 3 role recommendations within the domain based on skill matching and experience.</p>
+                    </div>
+                </div>
+                
+                <div class="instruction-step">
+                    <div class="step-number">5</div>
+                    <div>
+                        <h4>HR Decision</h4>
+                        <p>Review AI recommendations and make informed hiring decisions with detailed insights.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Upload Section -->
+        <section id="uploadSection">
+            <!-- Single Upload -->
+            <div id="singleUpload" class="upload-section">
+                <h2><i class="fas fa-user"></i> Single Candidate Analysis</h2>
+                <p style="color: #666; margin-bottom: 25px;">
+                    Upload a single candidate resume for detailed AI analysis and role recommendations
+                </p>
+                
+                <div class="file-format-badges">
+                    <span class="format-badge">PDF</span>
+                    <span class="format-badge">DOCX</span>
+                    <span class="format-badge">DOC</span>
+                    <span class="format-badge">TXT</span>
+                </div>
+
+                <div class="upload-area-large" id="singleUploadArea" onclick="document.getElementById('singleFileInput').click()">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload Candidate Resume</h3>
+                    <p>Click to browse or drag and drop your file here</p>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                        Maximum file size: 10MB
+                    </p>
+                </div>
+                
+                <input type="file" id="singleFileInput" accept=".pdf,.docx,.doc,.txt" style="display: none;" onchange="handleSingleFileSelect(event)">
+                
+                <div id="singleFileInfo" style="text-align: center; margin: 20px 0;"></div>
+                
+                <div style="text-align: center;">
+                    <button id="analyzeSingleBtn" class="btn btn-primary btn-large" disabled onclick="analyzeSingleResume()">
+                        <i class="fas fa-rocket"></i> Analyze Candidate
+                    </button>
+                </div>
+            </div>
+
+            <!-- Batch Upload -->
+            <div id="batchUpload" class="upload-section" style="display: none;">
+                <h2><i class="fas fa-users"></i> Batch Candidate Analysis</h2>
+                <p style="color: #666; margin-bottom: 25px;">
+                    Upload multiple resumes to process candidates in bulk (up to 50 files at once)
+                </p>
+                
+                <div class="file-format-badges">
+                    <span class="format-badge">PDF</span>
+                    <span class="format-badge">DOCX</span>
+                    <span class="format-badge">DOC</span>
+                    <span class="format-badge">TXT</span>
+                </div>
+
+                <div class="upload-area-large" id="batchUploadArea" onclick="document.getElementById('batchFileInput').click()">
+                    <i class="fas fa-files"></i>
+                    <h3>Upload Multiple Resumes</h3>
+                    <p>Click to browse or drag and drop multiple files here</p>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                        Maximum 50 files, 10MB each
+                    </p>
+                </div>
+                
+                <input type="file" id="batchFileInput" accept=".pdf,.docx,.doc,.txt" multiple style="display: none;" onchange="handleBatchFileSelect(event)">
+                
+                <div id="batchFileInfo" style="text-align: center; margin: 20px 0;"></div>
+                
+                <div style="text-align: center;">
+                    <button id="analyzeBatchBtn" class="btn btn-primary btn-large" disabled onclick="analyzeBatchResumes()">
+                        <i class="fas fa-rocket"></i> Analyze All Candidates
+                    </button>
+                </div>
+            </div>
+
+            <!-- Drag & Drop Upload -->
+            <div id="dragDropUpload" class="upload-section" style="display: none;">
+                <h2><i class="fas fa-cloud-upload-alt"></i> Drag & Drop Upload</h2>
+                <p style="color: #666; margin-bottom: 25px;">
+                    Simply drag and drop your resume files for quick analysis
+                </p>
+
+                <div class="upload-area-large" id="dragDropArea">
+                    <i class="fas fa-mouse-pointer"></i>
+                    <h3>Drag & Drop Files Here</h3>
+                    <p>Drag your resume files and drop them in this area</p>
+                    <p style="font-size: 0.9rem; color: #666; margin-top: 10px;">
+                        Supports PDF, DOCX, DOC, and TXT formats
+                    </p>
+                </div>
+                
+                <div id="dragDropFileInfo" style="text-align: center; margin: 20px 0;"></div>
+                
+                <div style="text-align: center;">
+                    <button id="analyzeDragDropBtn" class="btn btn-primary btn-large" disabled onclick="analyzeDragDropResumes()">
+                        <i class="fas fa-rocket"></i> Analyze Uploaded Files
+                    </button>
+                </div>
+            </div>
+
+            <!-- Integrations -->
+            <div id="integrationsUpload" class="upload-section" style="display: none;">
+                <h2><i class="fas fa-plug"></i> System Integrations</h2>
+                <p style="color: #666; margin-bottom: 25px;">
+                    Connect Smart Hire with your existing recruitment systems
+                </p>
+
+                <div class="upload-features">
+                    <div class="feature-card">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>ATS Integration</h3>
+                        <p>Connect with popular Applicant Tracking Systems</p>
+                        <button class="btn btn-outline" style="margin-top: 15px;">Configure</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fas fa-database"></i>
+                        <h3>HRIS Connection</h3>
+                        <p>Sync with Human Resources Information Systems</p>
+                        <button class="btn btn-outline" style="margin-top: 15px;">Connect</button>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <i class="fas fa-api"></i>
+                        <h3>API Access</h3>
+                        <p>Use our REST API for custom integrations</p>
+                        <button class="btn btn-outline" style="margin-top: 15px;">View Docs</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="upload-features">
+            <div class="feature-card">
+                <i class="fas fa-robot"></i>
+                <h3>AI-Powered Analysis</h3>
+                <p>Advanced machine learning models trained on 2400+ resumes</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Domain Classification</h3>
+                <p>Accurate classification into 22 professional domains</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-briefcase"></i>
+                <h3>Role Matching</h3>
+                <p>Top 3 role recommendations with confidence scores</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>Secure & Private</h3>
+                <p>Enterprise-grade security and data protection</p>
+            </div>
+        </section>
+
+        <!-- Recent Uploads (Sample) -->
+        <section class="recent-uploads">
+            <h2><i class="fas fa-history"></i> Recent Uploads</h2>
+            <p style="color: #666; margin-bottom: 20px;">
+                Your recently analyzed candidate resumes
+            </p>
+            
+            <div class="upload-list">
+                <div class="upload-item">
+                    <div class="upload-info">
+                        <div class="upload-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0;">John_Doe_Resume.pdf</h4>
+                            <p style="margin: 5px 0 0 0; color: #666;">Uploaded 2 hours ago</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="status-badge ready" style="background: #D4EDDA; color: #155724;">
+                            Analyzed
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="upload-item">
+                    <div class="upload-info">
+                        <div class="upload-icon">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0;">Jane_Smith_CV.docx</h4>
+                            <p style="margin: 5px 0 0 0; color: #666;">Uploaded 1 day ago</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="status-badge ready" style="background: #D4EDDA; color: #155724;">
+                            Analyzed
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="upload-item">
+                    <div class="upload-info">
+                        <div class="upload-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div>
+                            <h4 style="margin: 0;">Mike_Johnson_Resume.pdf</h4>
+                            <p style="margin: 5px 0 0 0; color: #666;">Uploaded 2 days ago</p>
+                        </div>
+                    </div>
+                    <div>
+                        <span class="status-badge ready" style="background: #D4EDDA; color: #155724;">
+                            Analyzed
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loadingSpinner" class="loading-spinner" style="display: none;">
+        <div class="spinner"></div>
+        <p>AI is analyzing resumes...</p>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'http://localhost:8000';
+
+        // Application State
+        let dragDropFiles = [];
+
+        // Initialize the application
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeDragDrop();
+            showUploadSection('single');
+        });
+
+        // Show specific upload section
+        function showUploadSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.upload-section').forEach(sec => {
+                sec.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(section + 'Upload').style.display = 'block';
+            
+            // Update quick actions highlight
+            document.querySelectorAll('.quick-action-card').forEach(card => {
+                card.style.borderColor = '#F8F9FA';
+            });
+            event.currentTarget.style.borderColor = '#667eea';
+        }
+
+        // File Selection Handlers
+        function handleSingleFileSelect(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const fileInfo = document.getElementById('singleFileInfo');
+                fileInfo.innerHTML = `
+                    <div style="background: #F8F9FA; padding: 15px; border-radius: 8px; display: inline-block;">
+                        <i class="fas fa-file" style="color: #667eea;"></i>
+                        <strong>${file.name}</strong> (${formatFileSize(file.size)})
+                    </div>
+                `;
+                document.getElementById('analyzeSingleBtn').disabled = false;
+            }
+        }
+
+        function handleBatchFileSelect(event) {
+            const files = event.target.files;
+            if (files.length > 0) {
+                const fileInfo = document.getElementById('batchFileInfo');
+                fileInfo.innerHTML = `
+                    <div style="background: #F8F9FA; padding: 15px; border-radius: 8px; display: inline-block;">
+                        <i class="fas fa-files" style="color: #667eea;"></i>
+                        <strong>${files.length} files selected</strong>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
+                            ${Array.from(files).map(f => f.name).join(', ')}
+                        </div>
+                    </div>
+                `;
+                document.getElementById('analyzeBatchBtn').disabled = false;
+            }
+        }
+
+        // Drag & Drop Initialization
+        function initializeDragDrop() {
+            const dragDropArea = document.getElementById('dragDropArea');
+            
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dragDropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dragDropArea.style.background = '#EAECFF';
+                dragDropArea.style.borderColor = '#764ba2';
+            }
+            
+            function unhighlight() {
+                dragDropArea.style.background = '#F8F9FF';
+                dragDropArea.style.borderColor = '#667eea';
+            }
+            
+            dragDropArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleDragDropFiles(files);
+            }
+        }
+
+        function handleDragDropFiles(files) {
+            dragDropFiles = Array.from(files);
+            const fileInfo = document.getElementById('dragDropFileInfo');
+            
+            if (dragDropFiles.length > 0) {
+                fileInfo.innerHTML = `
+                    <div style="background: #F8F9FA; padding: 15px; border-radius: 8px; display: inline-block;">
+                        <i class="fas fa-file" style="color: #667eea;"></i>
+                        <strong>${dragDropFiles.length} files dropped</strong>
+                        <div style="font-size: 0.9rem; color: #666; margin-top: 5px;">
+                            ${dragDropFiles.map(f => f.name).join(', ')}
+                        </div>
+                    </div>
+                `;
+                document.getElementById('analyzeDragDropBtn').disabled = false;
+            }
+        }
+
+        // Analysis Functions
+        async function analyzeSingleResume() {
+            const file = document.getElementById('singleFileInput').files[0];
+            if (!file) return;
+            
+            await uploadAndAnalyze(file, 'single');
+        }
+
+        async function analyzeBatchResumes() {
+            const files = document.getElementById('batchFileInput').files;
+            if (files.length === 0) return;
+            
+            await uploadAndAnalyzeMultiple(Array.from(files));
+        }
+
+        async function analyzeDragDropResumes() {
+            if (dragDropFiles.length === 0) return;
+            
+            await uploadAndAnalyzeMultiple(dragDropFiles);
+        }
+
+        // Upload and Analysis Functions
+        async function uploadAndAnalyze(file, type) {
+            showLoading(`Analyzing ${file.name}...`);
+            
+            const formData = new FormData();
+            formData.append('file', file);
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/analyze/upload`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.status === 'success') {
+                    // Redirect to results page or show results
+                    localStorage.setItem('lastAnalysis', JSON.stringify(data));
+                    window.location.href = 'index.html#results';
+                } else {
+                    throw new Error(data.message || 'Analysis failed');
+                }
+            } catch (error) {
+                showNotification('Analysis failed: ' + error.message, 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        async function uploadAndAnalyzeMultiple(files) {
+            showLoading(`Analyzing ${files.length} candidates...`);
+            
+            const formData = new FormData();
+            files.forEach(file => {
+                formData.append('files', file);
+            });
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/analyze/batch`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.results) {
+                    localStorage.setItem('batchAnalysis', JSON.stringify(data));
+                    window.location.href = 'index.html#batch-results';
+                } else {
+                    throw new Error('Batch analysis failed');
+                }
+            } catch (error) {
+                showNotification('Batch analysis failed: ' + error.message, 'error');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Utility Functions
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+
+        function showLoading(message = 'Processing...') {
+            const spinner = document.getElementById('loadingSpinner');
+            spinner.style.display = 'flex';
+            if (message) {
+                spinner.querySelector('p').textContent = message;
+            }
+        }
+
+        function hideLoading() {
+            document.getElementById('loadingSpinner').style.display = 'none';
+        }
+
+        function showNotification(message, type = 'info') {
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.innerHTML = `
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()">&times;</button>
+            `;
+            
+            // Add styles
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'error' ? '#DC3545' : type === 'success' ? '#28A745' : '#17A2B8'};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 5px;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+                z-index: 1001;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                min-width: 300px;
+            `;
+            
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 5000);
+        }
+
+        // Add some sample data for demonstration
+        function loadSampleData() {
+            // This would typically load from an API
+            console.log('Loading sample upload data...');
+        }
+
+        // Initialize sample data
+        loadSampleData();
+    </script>
+</body>
+</html>

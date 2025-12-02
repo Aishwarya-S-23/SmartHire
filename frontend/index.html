@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Hire - Professional Recruitment Platform</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation Header -->
+    <nav class="professional-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-brain"></i>
+                <h1>SmartHire</h1>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#" class="nav-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('singleUpload')">
+                    <i class="fas fa-file-upload"></i>
+                    <span>Single Resume</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('batchUpload')">
+                    <i class="fas fa-folder-plus"></i>
+                    <span>Batch Upload</span>
+                </a>
+                <a href="#" class="nav-item" onclick="showSection('recentAssigned')">
+                    <i class="fas fa-user-check"></i>
+                    <span>Recently Assigned</span>
+                </a>
+            </div>
+
+            <div class="nav-user">
+                <div class="user-info">
+                    <span class="user-name">HR Manager</span>
+                    <span class="user-status">Online</span>
+                </div>
+                <div class="user-avatar">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="content-section active">
+            <div class="section-header">
+                <h2>Recruitment Dashboard</h2>
+                <p>Overview of your hiring activities and system status</p>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalCandidates">0</h3>
+                        <p>Candidates Analyzed</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="totalRoles">240</h3>
+                        <p>Available Roles</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="accuracyRate">94%</h3>
+                        <p>Match Accuracy</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="avgTime">2.1s</h3>
+                        <p>Avg. Analysis Time</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <div class="action-buttons">
+                        <button class="action-btn primary" onclick="showSection('singleUpload')">
+                            <i class="fas fa-user-plus"></i>
+                            <span>Analyze Single Resume</span>
+                        </button>
+                        <button class="action-btn secondary" onclick="showSection('batchUpload')">
+                            <i class="fas fa-users"></i>
+                            <span>Batch Upload</span>
+                        </button>
+                        <button class="action-btn tertiary" onclick="showSection('recentAssigned')">
+                            <i class="fas fa-history"></i>
+                            <span>View Recent Assignments</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="system-status">
+                    <h3>System Status</h3>
+                    <div class="status-items">
+                        <div class="status-item">
+                            <span class="status-label">AI Model:</span>
+                            <span id="modelStatus" class="status-indicator loading">Loading...</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Backend API:</span>
+                            <span id="apiStatus" class="status-indicator loading">Checking...</span>
+                        </div>
+                        <div class="status-item">
+                            <span class="status-label">Database:</span>
+                            <span class="status-indicator ready">Connected</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Single Upload Section -->
+        <section id="singleUpload" class="content-section">
+            <div class="section-header">
+                <h2>Single Resume Analysis</h2>
+                <p>Upload and analyze individual candidate resumes</p>
+            </div>
+
+            <div class="upload-container">
+                <div class="upload-card">
+                    <div class="upload-header">
+                        <i class="fas fa-file-upload"></i>
+                        <h3>Upload Resume</h3>
+                    </div>
+                    
+                    <div class="upload-area" id="singleUploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Drag & Drop Resume File</h4>
+                            <p>Supported formats: PDF, DOCX, TXT</p>
+                            <input type="file" id="singleFileInput" accept=".pdf,.docx,.doc,.txt" hidden>
+                            <button class="btn btn-primary" onclick="document.getElementById('singleFileInput').click()">
+                                <i class="fas fa-folder-open"></i> Browse Files
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="singleFileName" class="file-name"></div>
+                </div>
+
+                <div class="analysis-card">
+                    <div class="analysis-header">
+                        <i class="fas fa-microscope"></i>
+                        <h3>Resume Analysis</h3>
+                    </div>
+                    
+                    <div class="text-input-group">
+                        <label for="resumeText">Or paste resume text:</label>
+                        <textarea id="resumeText" placeholder="Paste resume content here...
+
+Example:
+Senior Software Engineer with 5+ years experience in web development.
+Proficient in JavaScript, React, Node.js, and cloud technologies.
+Strong background in agile methodologies and team leadership." rows="8"></textarea>
+                    </div>
+                    
+                    <button id="analyzeSingleBtn" class="btn btn-primary btn-large">
+                        <i class="fas fa-rocket"></i> Analyze Resume
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Batch Upload Section -->
+        <section id="batchUpload" class="content-section">
+            <div class="section-header">
+                <h2>Batch Resume Processing</h2>
+                <p>Upload and analyze multiple resumes simultaneously</p>
+            </div>
+
+            <div class="batch-container">
+                <div class="batch-card">
+                    <div class="batch-header">
+                        <i class="fas fa-folder-plus"></i>
+                        <h3>Batch Upload</h3>
+                    </div>
+                    
+                    <div class="upload-area" id="batchUploadArea">
+                        <div class="upload-content">
+                            <i class="fas fa-layer-group"></i>
+                            <h4>Drag & Drop Multiple Files</h4>
+                            <p>Select multiple PDF, DOCX, or TXT files</p>
+                            <input type="file" id="batchFileInput" accept=".pdf,.docx,.doc,.txt" multiple hidden>
+                            <button class="btn btn-primary" onclick="document.getElementById('batchFileInput').click()">
+                                <i class="fas fa-folder-open"></i> Select Files
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="batchFileNames" class="file-names"></div>
+                    
+                    <button id="analyzeBatchBtn" class="btn btn-primary btn-large" disabled>
+                        <i class="fas fa-play-circle"></i> Process Batch Analysis
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recently Assigned Section -->
+        <section id="recentAssigned" class="content-section">
+            <div class="section-header">
+                <h2>Recently Assigned Candidates</h2>
+                <p>Overview of recent successful role assignments</p>
+            </div>
+
+            <div class="assignments-grid">
+                <div class="assignment-card">
+                    <div class="candidate-info">
+                        <div class="candidate-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="candidate-details">
+                            <h4>Sarah Chen</h4>
+                            <p class="candidate-role">Senior Data Scientist</p>
+                        </div>
+                    </div>
+                    <div class="assignment-details">
+                        <div class="match-score high">98% Match</div>
+                        <div class="assigned-role">Data Science Team</div>
+                        <div class="assignment-date">Assigned: Today</div>
+                    </div>
+                </div>
+
+                <div class="assignment-card">
+                    <div class="candidate-info">
+                        <div class="candidate-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="candidate-details">
+                            <h4>Marcus Johnson</h4>
+                            <p class="candidate-role">Full Stack Developer</p>
+                        </div>
+                    </div>
+                    <div class="assignment-details">
+                        <div class="match-score high">95% Match</div>
+                        <div class="assigned-role">Web Development</div>
+                        <div class="assignment-date">Assigned: 2 days ago</div>
+                    </div>
+                </div>
+
+                <div class="assignment-card">
+                    <div class="candidate-info">
+                        <div class="candidate-avatar">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="candidate-details">
+                            <h4>Emily Rodriguez</h4>
+                            <p class="candidate-role">UX Designer</p>
+                        </div>
+                    </div>
+                    <div class="assignment-details">
+                        <div class="match-score medium">88% Match</div>
+                        <div class="assigned-role">Design Team</div>
+                        <div class="assignment-date">Assigned: 3 days ago</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Analysis Results Section -->
+        <section id="analysisResults" class="content-section">
+            <div class="section-header">
+                <h2>Analysis Results</h2>
+                <p>AI-powered role recommendations for the candidate</p>
+            </div>
+
+            <div class="results-container">
+                <div class="results-header">
+                    <div class="candidate-summary">
+                        <div class="candidate-avatar-large">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="candidate-info">
+                            <h3 id="candidateName">Candidate Analysis</h3>
+                            <p id="candidateDetails">Resume analyzed successfully</p>
+                        </div>
+                        <div class="analysis-meta">
+                            <div class="meta-item">
+                                <i class="fas fa-clock"></i>
+                                <span id="analysisTime">Just now</span>
+                            </div>
+                            <div class="meta-item">
+                                <i class="fas fa-chart-line"></i>
+                                <span id="analysisConfidence">High Confidence</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-content">
+                    <!-- AI Explanation Dashboard - MOVED TO CORRECT LOCATION -->
+                    <div class="explanation-dashboard">
+                        <div class="explanation-header-main">
+                            <h4><i class="fas fa-brain"></i> AI Explanation Dashboard</h4>
+                            <p class="explanation-subtitle">Understand why the AI recommended these roles</p>
+                        </div>
+                        
+                        <div class="explanation-tabs">
+                            <button class="explanation-tab active" onclick="showExplanationTab('primary')">
+                                <i class="fas fa-star"></i> Top Recommendation
+                            </button>
+                            <button class="explanation-tab" onclick="showExplanationTab('comparison')">
+                                <i class="fas fa-balance-scale"></i> Compare All
+                            </button>
+                            <button class="explanation-tab" onclick="showExplanationTab('features')">
+                                <i class="fas fa-chart-bar"></i> Key Features
+                            </button>
+                        </div>
+                        
+                        <div class="explanation-content">
+                            <!-- Primary Explanation Tab -->
+                            <div id="primaryExplanation" class="explanation-tab-content active">
+                                <div class="explanation-header">
+                                    <h5>Why this role was recommended:</h5>
+                                    <div class="explanation-method" id="explanationMethod">SHAP Analysis</div>
+                                </div>
+                                <div class="feature-impact-chart" id="primaryImpactChart">
+                                    <!-- Impact chart will be populated here -->
+                                </div>
+                                <div class="explanation-summary" id="primaryExplanationSummary">
+                                    <!-- Explanation summary will be populated here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Comparison Tab -->
+                            <div id="comparisonExplanation" class="explanation-tab-content">
+                                <div class="comparison-chart" id="comparisonChart">
+                                    <!-- Comparison visualization will be populated here -->
+                                </div>
+                            </div>
+                            
+                            <!-- Features Tab -->
+                            <div id="featuresExplanation" class="explanation-tab-content">
+                                <div class="features-breakdown" id="featuresBreakdown">
+                                    <!-- Features breakdown will be populated here -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Primary Recommendation -->
+                    <div class="primary-recommendation">
+                        <div class="recommendation-header">
+                            <h3><i class="fas fa-star"></i> Top Recommendation</h3>
+                            <div class="confidence-badge" id="topConfidence">95% Match</div>
+                        </div>
+                        <div class="primary-role-card">
+                            <div class="role-main">
+                                <h4 id="primaryRoleName">Software Engineer</h4>
+                                <div class="role-domain" id="primaryDomain">Information Technology</div>
+                                <div class="role-description">
+                                    <p id="roleDescription">Best match based on skills and experience alignment</p>
+                                </div>
+                            </div>
+                            <div class="role-actions">
+                                <button class="btn btn-success" onclick="assignRole('primary')">
+                                    <i class="fas fa-user-check"></i> Assign This Role
+                                </button>
+                                <button class="btn btn-secondary" onclick="viewRoleDetails('primary')">
+                                    <i class="fas fa-info-circle"></i> Details
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Match Breakdown -->
+                    <div class="skills-breakdown">
+                        <h4><i class="fas fa-cogs"></i> Skills Analysis</h4>
+                        <div class="skills-grid" id="skillsGrid">
+                            <!-- Skills will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Alternative Recommendations -->
+                    <div class="alternative-recommendations">
+                        <h4><i class="fas fa-list-alt"></i> Alternative Roles</h4>
+                        <div class="recommendations-grid" id="recommendationsGrid">
+                            <!-- Alternative roles will be populated here -->
+                        </div>
+                    </div>
+
+                    <!-- Action Panel -->
+                    <div class="action-panel">
+                        <h4><i class="fas fa-tasks"></i> Next Steps</h4>
+                        <div class="action-buttons-grid">
+                            <button class="action-card" onclick="scheduleInterview()">
+                                <i class="fas fa-calendar-check"></i>
+                                <span>Schedule Interview</span>
+                                <small>Book a meeting with the candidate</small>
+                            </button>
+                            <button class="action-card" onclick="saveToTalentPool()">
+                                <i class="fas fa-database"></i>
+                                <span>Save to Talent Pool</span>
+                                <small>Store for future positions</small>
+                            </button>
+                            <button class="action-card" onclick="generateReport()">
+                                <i class="fas fa-file-pdf"></i>
+                                <span>Generate Report</span>
+                                <small>PDF analysis summary</small>
+                            </button>
+                            <button class="action-card" onclick="shareResults()">
+                                <i class="fas fa-share-alt"></i>
+                                <span>Share Results</span>
+                                <small>With team members</small>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions Footer -->
+                    <div class="results-footer">
+                        <button class="btn btn-secondary" onclick="showSection('singleUpload')">
+                            <i class="fas fa-redo"></i> Analyze Another Resume
+                        </button>
+                        <button class="btn btn-primary" onclick="saveAllRecommendations()">
+                            <i class="fas fa-save"></i> Save All Recommendations
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay" class="loading-overlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Analyzing Resume</h3>
+            <p>Please wait while our AI processes the candidate information...</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

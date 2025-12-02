@@ -1,0 +1,16 @@
+smart-hire/
+├── backend/
+│   ├── app.py
+│   ├── model.py
+│   ├── data_loader.py
+│   ├── resume_parser.py
+│   ├── requirements.txt
+│   └── models/
+├── frontend/
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+│   └── upload.html
+├── data/
+│   └── Resume.csv
+└── README.md

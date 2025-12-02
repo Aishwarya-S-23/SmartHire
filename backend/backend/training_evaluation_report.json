@@ -1,0 +1,149 @@
+{
+  "training_info": {
+    "total_resumes_trained": 2483,
+    "total_job_roles": 240,
+    "total_domains": 24,
+    "overall_accuracy": 0.029399919452275474
+  },
+  "performance_metrics": {
+    "top_k_accuracy": {
+      "top_1": {
+        "accuracy": 0.025372533225936366,
+        "correct": 63,
+        "total": 2483
+      },
+      "top_2": {
+        "accuracy": 0.03383004430124849,
+        "correct": 84,
+        "total": 2483
+      },
+      "top_3": {
+        "accuracy": 0.04027386226339106,
+        "correct": 100,
+        "total": 2483
+      }
+    },
+    "domain_accuracy": {
+      "HR": {
+        "accuracy": 0.6545454545454545,
+        "correct": 72,
+        "total": 110
+      },
+      "DESIGNER": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 107
+      },
+      "INFORMATION-TECHNOLOGY": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 120
+      },
+      "TEACHER": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 102
+      },
+      "ADVOCATE": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 118
+      },
+      "BUSINESS-DEVELOPMENT": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 119
+      },
+      "HEALTHCARE": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 115
+      },
+      "FITNESS": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 117
+      },
+      "AGRICULTURE": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 63
+      },
+      "BPO": {
+        "accuracy": 0.045454545454545456,
+        "correct": 1,
+        "total": 22
+      },
+      "SALES": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 116
+      },
+      "CONSULTANT": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 115
+      },
+      "DIGITAL-MEDIA": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 96
+      },
+      "AUTOMOBILE": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 36
+      },
+      "CHEF": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 118
+      },
+      "FINANCE": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 118
+      },
+      "APPAREL": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 97
+      },
+      "ENGINEERING": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 118
+      },
+      "ACCOUNTANT": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 118
+      },
+      "CONSTRUCTION": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 112
+      },
+      "PUBLIC-RELATIONS": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 111
+      },
+      "BANKING": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 115
+      },
+      "ARTS": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 103
+      },
+      "AVIATION": {
+        "accuracy": 0.0,
+        "correct": 0,
+        "total": 117
+      }
+    }
+  }
+}

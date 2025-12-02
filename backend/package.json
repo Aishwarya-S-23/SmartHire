@@ -1,0 +1,12 @@
+{
+  "name": "smart-hire-backend",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "uvicorn main:app --reload --host 0.0.0.0 --port 8000",
+    "frontend": "cd ../frontend && npm start",
+    "both": "concurrently \"npm run dev\" \"npm run frontend\""
+  },
+  "dependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
