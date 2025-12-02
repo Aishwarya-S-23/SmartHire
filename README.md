@@ -1,33 +1,35 @@
-Smart Hire: Automated Resume Screening and Job Role Recommendation System
+Smart Hire – Automated Resume Screening and Job Role Recommendation
+
+Smart Hire is an AI-powered resume analysis system that automatically screens candidate resumes, extracts key information, and predicts the top three most suitable job roles.
+It reduces manual HR workload and speeds up the hiring decision process.
+
 Overview
 
-Smart Hire is an AI-based resume screening and job-matching system designed to streamline the hiring workflow. It automatically analyzes candidate resumes, processes key information, and predicts the top three job roles that best match the candidate’s profile.
-This system replicates the initial screening tasks typically performed by Human Resources teams, enabling faster, more consistent, and data-driven candidate evaluation.
+Smart Hire performs automated candidate evaluation through these core steps:
 
-The application includes:
+Resume parsing and data extraction
 
-A machine learning model trained on categorized job data.
+Skill and experience analysis
 
-A Flask backend API for parsing resumes and generating predictions.
+Model-based prediction of the top three job roles
 
-A frontend interface for uploading resumes and viewing recommended roles.
+API-driven backend connected to a user-friendly frontend
+
+End-to-end automation of tasks typically handled manually by HR
 
 Features
-Resume Screening
 
-Parses resumes to extract key skills, experience, and relevant attributes required for job classification.
+Automated resume screening
 
-Job Role Classification
+Top 3 job-role prediction using machine learning
 
-Predicts the best three job roles a candidate is suited for based on model inference.
+Flask-powered backend for predictions
 
-Automated HR Shortlisting
+Clean and simple frontend interface
 
-Replaces manual initial screening with an intelligent and scalable decision system.
+Pre-trained or dynamically trained ML model
 
-Frontend and Backend Architecture
-
-Includes a complete backend (Flask, model pipeline, data loaders) and frontend built with HTML, CSS, JavaScript, and Vite.
+Ready for deployment on platforms like Render, Railway, or Vercel
 
 Project Structure
 SmartHire/
@@ -39,115 +41,109 @@ SmartHire/
 │   ├── train.py
 │   ├── resume_parser.py
 │   ├── requirements.txt
-│   ├── complete_job_roles_model.pkl
-│   └── dataset/
+│   └── complete_job_roles_model.pkl
 │
 ├── frontend/
 │   ├── index.html
 │   ├── upload.html
-│   ├── script.js
 │   ├── styles.css
-│   ├── vite.config.js
-│   └── src/
+│   ├── script.js
+│   └── vite.config.js
 │
+├── dataset/
 ├── run.bat
 └── README.md
 
-Installation
-Prerequisites
+Installation and Setup
+1. Clone the Repository
+git clone https://github.com/your-username/SmartHire.git
+cd SmartHire
 
-Python 3.7 or higher
-
-pip package manager
-
-Node.js (optional, for frontend builds)
-
-Backend Setup
-
-Navigate to the backend directory:
-
+2. Setup Backend
 cd backend
-
-
-Install required packages:
-
 pip install -r requirements.txt
 
-
-Ensure that the trained model file complete_job_roles_model.pkl exists.
-If not, run:
-
-python train.py
-
-
-Start the Flask backend server:
-
+3. Start Backend Server
 python main.py
 
 
-The server will start at:
+Access server at:
 
 http://localhost:5000
 
-Frontend Setup
+4. Run Frontend
 
-Navigate to the frontend directory:
-
-cd frontend
-
-
-Install dependencies:
+Open the frontend folder and run:
 
 npm install
-
-
-Start the development server:
-
 npm run dev
 
+Deployment Link
 
-Frontend runs at:
+If the project is deployed, add the link below:
 
-http://localhost:5173
+Live Deployment:
+https://your-deployment-url.com
+
+This helps users, recruiters, and collaborators access the system instantly.
 
 API Endpoints
-Health Check
-GET /health
+Endpoint	Method	Description
+/	GET	Health check
+/predict	POST	Returns top 3 job role predictions
+/parse	POST	Extracts content from uploaded resume
+Run Script (Windows)
 
+The repository contains a startup script run.bat that:
 
-Returns basic service availability.
+Verifies Python installation
 
-Predict Job Roles
-POST /predict
+Installs missing dependencies
 
+Trains the ML model if not present
 
-Accepts a resume file and returns the top three job roles.
+Launches the Flask server
 
-Running the Entire System via run.bat
-
-The provided batch script:
-
-Verifies Python installation.
-
-Installs required dependencies.
-
-Trains the model if missing.
-
-Starts the backend Flask server.
-
-Run:
+Run it using:
 
 run.bat
 
-Deployment Notes
+Technologies Used
 
-Backend can be deployed on Render, Railway, or any Python-compatible hosting.
+Python
 
-Frontend can be deployed on Vercel, Netlify, or GitHub Pages.
+Flask
 
-Ensure environment variables and Python paths are set correctly on the deployment platform.
+scikit-learn
 
-Conclusion
+pandas
 
-Smart Hire brings automation, precision, and efficiency to the hiring pipeline by intelligently matching candidates to the roles they are most suitable for.
-It acts as a rapid-screening assistant for HR teams, saving time and improving the quality of shortlisting.
+nltk
+
+JavaScript
+
+HTML/CSS
+
+Vite
+
+Machine Learning algorithms
+
+Contribution Guidelines
+
+Contributions are welcome.
+
+Fork the repository
+
+Create a new feature branch
+
+Commit your changes
+
+Open a Pull Request
+
+License
+
+This project is licensed under the MIT License.
+
+Acknowledgements
+
+This project was developed as an AI-driven solution to streamline HR workflows and improve recruitment efficiency.
