@@ -80,11 +80,6 @@ npm run dev
 
 Deployment Link
 
-If the project is deployed, add the link below:
-
-Live Deployment:
-https://your-deployment-url.com
-
 This helps users, recruiters, and collaborators access the system instantly.
 
 API Endpoints
